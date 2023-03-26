@@ -4,12 +4,13 @@
 @inject UserManager<IdentityUser> UserManager
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Vessels";
 }
 
-<h1>Index</h1>
+<h1>Fill a Vessel</h1>
 
 <p>
+    Select a vessel to fill.
     @if ((await AuthorizationService.AuthorizeAsync(User, null, Operations.Create)).Succeeded)
     {
         <a asp-page="Create">Create New</a>

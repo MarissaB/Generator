@@ -85,9 +85,11 @@ namespace Generator.Data
         public static void SeedDB(ApplicationDbContext context)
         {
             SeedVessels(context);
-            // SeedCreatures();
-            // SeedTreasures();
+            SeedCreatures(context);
+            SeedTreasures(context);
         }
+
+        
 
         /// <summary>
         /// Adds Vessels to the database if it's empty.
@@ -141,6 +143,83 @@ namespace Generator.Data
                 CreatureCapacity = 1,
                 TreasureCapacity = 2,
                 Image = "Barrel.png"
+            });
+            context.SaveChanges();
+        }
+        
+        /// <summary>
+        /// Add Creatures to the database if it's empty
+        /// </summary>
+        /// <param name="context"></param>
+        private static void SeedCreatures(ApplicationDbContext context)
+        {
+            if (context.Creature.Any())
+            {
+                return;
+            }
+
+            context.Creature.Add(new Creature
+            {
+                Name = "Bandit",
+                Description = "Generic guy, low skills.",
+                Image = "Humanoid.png"
+            });
+            context.Creature.Add(new Creature
+            {
+                Name = "Big Bandit",
+                Description = "Tough guy, low skills.",
+                Image = "Humanoid.png"
+            });
+            context.Creature.Add(new Creature
+            {
+                Name = "Lizard",
+                Description = "Small and cute.",
+                Image = "Beast.png"
+            });
+            context.Creature.Add(new Creature
+            {
+                Name = "Cat",
+                Description = "Fluffy.",
+                Image = "Beast.png"
+            });
+            context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Add Treasures to the database if it's empty
+        /// </summary>
+        /// <param name="context"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        private static void SeedTreasures(ApplicationDbContext context)
+        {
+            if (context.Treasure.Any())
+            {
+                return;
+            }
+
+            context.Treasure.Add(new Treasure
+            {
+                Name = "Gold coins",
+                Description = "Pile of gold coins. Roll 5d12.",
+                Image = "Coin.png"
+            });
+            context.Treasure.Add(new Treasure
+            {
+                Name = "Gems",
+                Description = "Small bag of assorted gems. Roll 5d12 x 100 for gold value.",
+                Image = "Coin.png"
+            });
+            context.Treasure.Add(new Treasure
+            {
+                Name = "Silverware",
+                Description = "Forks, knives, and spoons in good condition.",
+                Image = "Coin.png"
+            });
+            context.Treasure.Add(new Treasure
+            {
+                Name = "Dagger",
+                Description = "A dagger with no sheath.",
+                Image = "Weapon.png"
             });
             context.SaveChanges();
         }
