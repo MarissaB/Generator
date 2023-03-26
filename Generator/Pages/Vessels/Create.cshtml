@@ -1,0 +1,49 @@
+﻿@page
+@model Generator.Pages.Vessels.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Vessel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Vessel.Name" class="control-label"></label>
+                <input asp-for="Vessel.Name" class="form-control" />
+                <span asp-validation-for="Vessel.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vessel.CreatureCapacity" class="control-label"></label>
+                <input asp-for="Vessel.CreatureCapacity" class="form-control" />
+                <span asp-validation-for="Vessel.CreatureCapacity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vessel.TreasureCapacity" class="control-label"></label>
+                <input asp-for="Vessel.TreasureCapacity" class="form-control" />
+                <span asp-validation-for="Vessel.TreasureCapacity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vessel.Image" class="control-label"></label>
+                <input asp-for="Vessel.Image" class="form-control" />
+                <span asp-validation-for="Vessel.Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
