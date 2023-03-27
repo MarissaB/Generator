@@ -19,4 +19,12 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Icons\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Icons\Boat.png" />
+  </ItemGroup>
+
 </Project>

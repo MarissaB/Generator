@@ -2,7 +2,6 @@
 
 namespace Generator.Models
 {
-    // TODO: Scaffold pages for Treasure
     public class Treasure
     {
         public int TreasureId { get; set; }

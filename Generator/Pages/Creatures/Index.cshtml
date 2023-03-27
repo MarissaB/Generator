@@ -20,9 +20,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Creature[0].Description)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Creature[0].Image)
-            </th>
+            <th/> <!-- Column for icon -->
             <th></th>
         </tr>
     </thead>
@@ -36,7 +34,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Image)
+                    <img src="Icons/@Html.DisplayFor(modelItem => item.Image)" alt="icon" height=40 width=40 />
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.CreatureId">Edit</a> |

@@ -11,9 +11,6 @@ namespace Generator.Pages.Vessels
     [AllowAnonymous]
     public class FillModel : PageModel
     {
-        // TODO: After loading the Vessel, display a number of filler elements to match Treasure capacities
-        // TODO: Implement random lookup for which Treasures to display
-        // TODO: Implement random lookup for which Creatures to display
         private readonly ApplicationDbContext _context;
         public FillModel(ApplicationDbContext context)
         {
@@ -36,23 +33,42 @@ namespace Generator.Pages.Vessels
             FillTreasures();
             return Page();
         }
-
+        /// <summary>
+        /// Generate random index values, then grab the Treasures at those indexes to fill the vessel
+        /// </summary>
         private void FillCreatures()
         {
             Creatures = new List<Creature>();
             if (Vessel.CreatureCapacity > 0 && _context.Creature != null)
             {
-                Creatures = _context.Creature.Take(Vessel.CreatureCapacity).ToList();
+                List<Creature> creaturesAvailable = _context.Creature.ToList();
+                for (int i = 0; i < Vessel.CreatureCapacity; i++)
+                {
+                    int randomIndex = Random.Shared.Next(0, creaturesAvailable.Count);
+                    Creatures.Add(creaturesAvailable[randomIndex]);
+                }
+                Creatures = Creatures.OrderBy(t => t.Name).ToList();
             }
         }
 
+        /// <summary>
+        /// Generate random index values, then grab the Treasures at those indexes to fill the vessel
+        /// </summary>
         private void FillTreasures()
         {
             Treasures = new List<Treasure>();
             if (Vessel.TreasureCapacity > 0 && _context.Treasure != null)
             {
-                Treasures = _context.Treasure.Take(Vessel.TreasureCapacity).ToList();
+                List<Treasure> treasuresAvailable = _context.Treasure.ToList();
+                for (int i = 0; i < Vessel.TreasureCapacity; i++)
+                {
+                    int randomIndex = Random.Shared.Next(0, treasuresAvailable.Count);
+                    Treasures.Add(treasuresAvailable[randomIndex]);
+                }
+                Treasures = Treasures.OrderBy(t => t.Name).ToList();
             }
+
+
         }
     }
 }

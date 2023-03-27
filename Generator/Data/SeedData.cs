@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Generator.Data
 {
+    // TODO: Add more data for treasures and creatures. Icons from game-icons.net
     public static class SeedData
     {
         /// <summary>
@@ -107,42 +108,42 @@ namespace Generator.Data
                 Name = "Rowboat", 
                 CreatureCapacity = 2, 
                 TreasureCapacity = 5, 
-                Image = "Rowboat.png" 
+                Image = "Boat.png" 
             });
             context.Vessel.Add(new Vessel
             {
                 Name = "Keelboat",
                 CreatureCapacity = 4,
                 TreasureCapacity = 10,
-                Image = "Keelboat.png"
+                Image = "Boat.png"
             });
             context.Vessel.Add(new Vessel
             {
                 Name = "Galleon",
                 CreatureCapacity = 20,
                 TreasureCapacity = 15,
-                Image = "Galleon.png"
+                Image = "Boat.png"
             });
             context.Vessel.Add(new Vessel
             {
                 Name = "Warship",
                 CreatureCapacity = 20,
                 TreasureCapacity = 15,
-                Image = "Warship.png"
+                Image = "Boat.png"
             });
             context.Vessel.Add(new Vessel
             {
                 Name = "Crate",
                 CreatureCapacity = 0,
                 TreasureCapacity = 4,
-                Image = "Crate.png"
+                Image = "Box.png"
             });
             context.Vessel.Add(new Vessel
             {
                 Name = "Barrel",
                 CreatureCapacity = 1,
                 TreasureCapacity = 2,
-                Image = "Barrel.png"
+                Image = "Box.png"
             });
             context.SaveChanges();
         }
@@ -201,25 +202,25 @@ namespace Generator.Data
             {
                 Name = "Gold coins",
                 Description = "Pile of gold coins. Roll 5d12.",
-                Image = "Coin.png"
+                Image = "Treasure.png"
             });
             context.Treasure.Add(new Treasure
             {
                 Name = "Gems",
                 Description = "Small bag of assorted gems. Roll 5d12 x 100 for gold value.",
-                Image = "Coin.png"
+                Image = "Gem.png"
             });
             context.Treasure.Add(new Treasure
             {
                 Name = "Silverware",
                 Description = "Forks, knives, and spoons in good condition.",
-                Image = "Coin.png"
+                Image = "Treasure.png"
             });
             context.Treasure.Add(new Treasure
             {
                 Name = "Dagger",
                 Description = "A dagger with no sheath.",
-                Image = "Weapon.png"
+                Image = "Sword.png"
             });
             context.SaveChanges();
         }

@@ -12,30 +12,27 @@
     <table class="table">
         <thead>
             <tr>
+                <th/> <!-- Column for icon -->
                 <th>
                     @Html.DisplayNameFor(model => model.Creatures[0].Name)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Creatures[0].Description)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Creatures[0].Image)
-                </th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Creatures)
+            @foreach (var creature in Model.Creatures)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Name)
+                        <img src="~/Icons/@Html.DisplayFor(modelItem => creature.Image)" alt="icon" height=40 width=40 />
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Description)
+                        @Html.DisplayFor(modelItem => creature.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Image)
+                        @Html.DisplayFor(modelItem => creature.Description)
                     </td>
                 </tr>
             }
@@ -47,30 +44,27 @@
     <table class="table">
         <thead>
             <tr>
+                <td/> <!-- Column for icon -->
                 <th>
                     @Html.DisplayNameFor(model => model.Treasures[0].Name)
                 </th>                                   
                 <th>                                    
                     @Html.DisplayNameFor(model => model.Treasures[0].Description)
                 </th>                                   
-                <th>                                    
-                    @Html.DisplayNameFor(model => model.Treasures[0].Image)
-                </th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Treasures)
+            @foreach (var treasure in Model.Treasures)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Name)
+                        <img src="~/Icons/@Html.DisplayFor(modelItem => treasure.Image)" alt="icon" height=40 width=40 />
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Description)
+                        @Html.DisplayFor(modelItem => treasure.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Image)
+                        @Html.DisplayFor(modelItem => treasure.Description)
                     </td>
                 </tr>
             }
