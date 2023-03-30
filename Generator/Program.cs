@@ -8,8 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -36,9 +35,11 @@ using (var scope = app.Services.CreateScope())
     // Set pw with Secret Manager tool
     // dotnet user-secrets set SeedUserPW passwordgoeshere
     var testUserPw = builder.Configuration.GetValue<string>("SeedUserPW");
+    var adminEmail = builder.Configuration.GetValue<string>("AdminEmail");
+    var normalEmail = builder.Configuration.GetValue<string>("NormalEmail");
     if (testUserPw != null)
     {
-        await SeedData.Initialize(services, testUserPw);
+        await SeedData.Initialize(services, testUserPw, adminEmail, normalEmail);
     }
 
 }

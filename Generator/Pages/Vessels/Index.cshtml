@@ -4,12 +4,13 @@
 @inject UserManager<IdentityUser> UserManager
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Vessels";
 }
 
-<h1>Index</h1>
+<h1>Fill a Vessel</h1>
 
 <p>
+    Select a vessel to fill.
     @if ((await AuthorizationService.AuthorizeAsync(User, null, Operations.Create)).Succeeded)
     {
         <a asp-page="Create">Create New</a>
@@ -18,6 +19,8 @@
 <table class="table">
     <thead>
         <tr>
+            <th/> <!-- Column for buttons -->
+            <th/> <!-- Column for icon -->
             <th>
                 @Html.DisplayNameFor(model => model.Vessel[0].Name)
             </th>
@@ -27,27 +30,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.Vessel[0].TreasureCapacity)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Vessel[0].Image)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model.Vessel) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatureCapacity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TreasureCapacity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
             <td>
                 <a asp-page="./Fill" asp-route-id="@item.VesselId">Fill</a>
                 @if ((await AuthorizationService.AuthorizeAsync(User, item, Operations.Update)).Succeeded)
@@ -59,7 +46,19 @@
                     <text> | </text>
                     <a asp-page="./Delete" asp-route-id="@item.VesselId">Delete</a>
                 }
-             </td>
+            </td>
+            <td>
+                <img src="Icons/@Html.DisplayFor(modelItem => item.Image)" alt="icon" height=40 width=40 />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatureCapacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TreasureCapacity)
+            </td>
         </tr>
 }
     </tbody>

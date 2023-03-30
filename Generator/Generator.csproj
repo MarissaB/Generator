@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-Generator-65409153-a83d-4e55-a48e-39b7b896d29d</UserSecretsId>
+    <StartupObject></StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +18,14 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Icons\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Icons\Boat.png" />
   </ItemGroup>
 
 </Project>

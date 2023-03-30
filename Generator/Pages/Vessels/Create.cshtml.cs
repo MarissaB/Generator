@@ -5,7 +5,7 @@ using Generator.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Generator.Authorization;
-
+// TODO: Make icon assignment into a dropdown of options from Icons folder instead of free text entry
 namespace Generator.Pages.Vessels
 {
     public class CreateModel : DI_BasePageModel
