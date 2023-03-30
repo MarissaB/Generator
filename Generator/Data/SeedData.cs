@@ -14,14 +14,14 @@ namespace Generator.Data
         /// <param name="serviceProvider"></param>
         /// <param name="testUserPass"></param>
         /// <returns></returns>
-        public static async Task Initialize(IServiceProvider serviceProvider, string testUserPass)
+        public static async Task Initialize(IServiceProvider serviceProvider, string testUserPass, string adminEmail, string normalEmail)
         {
             using (var context = new ApplicationDbContext(serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
             {
-                var adminID = await EnsureUser(serviceProvider, testUserPass, "admin@example.com");
+                var adminID = await EnsureUser(serviceProvider, testUserPass, adminEmail);
                 await EnsureRole(serviceProvider, adminID, OperationNames.AdministratorsRole);
 
-                var normalID = await EnsureUser(serviceProvider, testUserPass, "normal@example.com");
+                var normalID = await EnsureUser(serviceProvider, testUserPass, normalEmail);
 
                 SeedDB(context);
             }
@@ -50,6 +50,7 @@ namespace Generator.Data
             }
             return user.Id;
         }
+
         /// <summary>
         /// Ensure that the user has the specified role and assign if they don't
         /// </summary>
@@ -89,8 +90,6 @@ namespace Generator.Data
             SeedCreatures(context);
             SeedTreasures(context);
         }
-
-        
 
         /// <summary>
         /// Adds Vessels to the database if it's empty.
