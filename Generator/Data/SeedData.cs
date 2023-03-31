@@ -1,13 +1,30 @@
 ﻿using Generator.Authorization;
 using Generator.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace Generator.Data
 {
-    // TODO: Add more data for treasures and creatures. Icons from game-icons.net
+    // TODO: Add more data for each category. Icons from game-icons.net
+    // TODO: Figure out a way to flatten and read the seed data, because typing out individual Add lines kinda sucks. JSON file?
     public static class SeedData
     {
+        private static readonly string SeedPathPrefix = @"Data" + Path.DirectorySeparatorChar + "Seeds" + Path.DirectorySeparatorChar;
+        private enum SeedTypes
+        {
+            Vessel,
+            Creature,
+            Treasure,
+            Outpost,
+            ReligiousSite,
+            Artisan,
+            SpecialtyShop
+        }
+
+        
         /// <summary>
         /// Check for a pair of users (admin, normal) then seed the database with starter data.
         /// </summary>
@@ -84,71 +101,96 @@ namespace Generator.Data
             return identityResult;
         }
 
-        public static void SeedDB(ApplicationDbContext context)
-        {
-            SeedVessels(context);
-            SeedCreatures(context);
-            SeedTreasures(context);
-            SeedOutposts(context);
-            SeedReligiousSites(context);
-            SeedArtisans(context);
-            SeedSpecialtyShops(context);
-        }
-
         /// <summary>
-        /// Adds Vessels to the database if it's empty.
+        /// Populates each table based on JSON file in Seeds folder.
         /// </summary>
         /// <param name="context"></param>
-        private static void SeedVessels(ApplicationDbContext context)
+        public static void SeedDB(ApplicationDbContext context)
         {
-            if (context.Vessel.Any())
+            // To generate JSON seed file from a POPULATED table in SQL, run /Data/Seeds/GenerateSeedJSON.sql query.
+            // The query doesn't work if it's empty lol.
+            SeedJSON(context, SeedTypes.Vessel);
+            SeedJSON(context, SeedTypes.Creature);
+            SeedJSON(context, SeedTypes.Treasure);
+            SeedJSON(context, SeedTypes.Outpost);
+            SeedJSON(context, SeedTypes.ReligiousSite);
+            SeedJSON(context, SeedTypes.Artisan);
+            SeedJSON(context, SeedTypes.SpecialtyShop);
+        }
+
+        private static void SeedJSON(ApplicationDbContext context, SeedTypes type)
+        {
+            if (type == SeedTypes.Vessel && !context.Vessel.Any())
             {
-                return;
+                string vesselJSON = File.ReadAllText(SeedPathPrefix + type + ".json");
+                if (vesselJSON != null)
+                {
+                    List<Vessel> vessels = JsonConvert.DeserializeObject<List<Vessel>>(vesselJSON);
+                    context.Vessel.AddRange(vessels);
+                    context.SaveChanges();
+                }
             }
 
-            context.Vessel.Add(new Vessel
+            if (type == SeedTypes.Creature && !context.Creature.Any())
             {
-                Name = "Rowboat", 
-                CreatureCapacity = 2, 
-                TreasureCapacity = 5, 
-                Image = "Boat.png" 
-            });
-            context.Vessel.Add(new Vessel
+                string creatureJSON = File.ReadAllText(SeedPathPrefix + type + ".json");
+                if (creatureJSON != null)
+                {
+                    List<Creature> creatures = JsonConvert.DeserializeObject<List<Creature>>(creatureJSON);
+                    context.Creature.AddRange(creatures);
+                    context.SaveChanges();
+                }
+            }
+            if (type == SeedTypes.Treasure && !context.Treasure.Any())
             {
-                Name = "Keelboat",
-                CreatureCapacity = 4,
-                TreasureCapacity = 10,
-                Image = "Boat.png"
-            });
-            context.Vessel.Add(new Vessel
+                string treasureJSON = File.ReadAllText(SeedPathPrefix + type + ".json");
+                if (treasureJSON != null)
+                {
+                    List<Treasure> treasures = JsonConvert.DeserializeObject<List<Treasure>>(treasureJSON);
+                    context.Treasure.AddRange(treasures);
+                    context.SaveChanges();
+                }
+            }
+            if (type == SeedTypes.Outpost && !context.Outpost.Any())
             {
-                Name = "Galleon",
-                CreatureCapacity = 20,
-                TreasureCapacity = 15,
-                Image = "Boat.png"
-            });
-            context.Vessel.Add(new Vessel
+                string outpostJSON = File.ReadAllText(SeedPathPrefix + type + ".json");
+                if (outpostJSON != null)
+                {
+                    List<Outpost> outposts = JsonConvert.DeserializeObject<List<Outpost>>(outpostJSON);
+                     context.Outpost.AddRange(outposts);
+                     context.SaveChanges();
+                }
+            }
+            if (type == SeedTypes.ReligiousSite && !context.ReligiousSite.Any())
             {
-                Name = "Warship",
-                CreatureCapacity = 20,
-                TreasureCapacity = 15,
-                Image = "Boat.png"
-            });
-            context.Vessel.Add(new Vessel
+                string religiousSitesJSON = File.ReadAllText(SeedPathPrefix + type + ".json");
+                if (religiousSitesJSON != null)
+                {
+                    List<ReligiousSite> religiousSites = JsonConvert.DeserializeObject<List<ReligiousSite>>(religiousSitesJSON);
+                    context.ReligiousSite.AddRange(religiousSites);
+                    context.SaveChanges();
+                }
+            }
+            if (type == SeedTypes.Artisan && !context.Artisan.Any())
             {
-                Name = "Crate",
-                CreatureCapacity = 0,
-                TreasureCapacity = 4,
-                Image = "Box.png"
-            });
-            context.Vessel.Add(new Vessel
+                string artisanJSON = File.ReadAllText(SeedPathPrefix + type + ".json");
+                if (artisanJSON != null)
+                {
+                    List<Artisan> artisans = JsonConvert.DeserializeObject<List<Artisan>>(artisanJSON);
+                    context.Artisan.AddRange(artisans);
+                    context.SaveChanges();
+                }
+            }
+            if (type == SeedTypes.SpecialtyShop && !context.SpecialtyShop.Any())
             {
-                Name = "Barrel",
-                CreatureCapacity = 1,
-                TreasureCapacity = 2,
-                Image = "Box.png"
-            });
-            context.SaveChanges();
+                string specialtyShopsJSON = File.ReadAllText(SeedPathPrefix + type + ".json");
+                if (specialtyShopsJSON != null)
+                {
+                    List<SpecialtyShop> specialtyShops = JsonConvert.DeserializeObject<List<SpecialtyShop>>(specialtyShopsJSON);
+                    context.SpecialtyShop.AddRange(specialtyShops);
+                    context.SaveChanges();
+                }
+            }
         }
         
         /// <summary>

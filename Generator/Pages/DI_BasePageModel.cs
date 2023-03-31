@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Generator.Pages.Vessels
+namespace Generator.Pages
 {
     public class DI_BasePageModel : PageModel
     {

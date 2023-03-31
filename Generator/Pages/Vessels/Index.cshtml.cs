@@ -3,8 +3,6 @@ using Generator.Data;
 using Generator.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Generator.Authorization;
-using Generator.Pages.Vessels;
 
 namespace Generator.Pages.Vessels
 {

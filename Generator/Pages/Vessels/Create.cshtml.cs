@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Generator.Models;
 using Generator.Data;
 using Microsoft.AspNetCore.Authorization;

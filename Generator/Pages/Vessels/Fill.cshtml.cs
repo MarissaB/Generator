@@ -1,4 +1,3 @@
-using Generator.Authorization;
 using Generator.Data;
 using Generator.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -34,7 +33,7 @@ namespace Generator.Pages.Vessels
             return Page();
         }
         /// <summary>
-        /// Generate random index values, then grab the Treasures at those indexes to fill the vessel
+        /// Generate random index values, then grab the Creatures at those indexes to fill the vessel
         /// </summary>
         private void FillCreatures()
         {

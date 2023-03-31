@@ -1,0 +1,22 @@
+﻿[
+  {
+    "Name": "Gold coins",
+    "Image": "Treasure.png",
+    "Description": "Pile of gold coins. Roll 5d12."
+  },
+  {
+    "Name": "Gems",
+    "Image": "Gem.png",
+    "Description": "Small bag of assorted gems. Roll 5d12 x 100 for gold value."
+  },
+  {
+    "Name": "Silverware",
+    "Image": "Treasure.png",
+    "Description": "Forks, knives, and spoons in good condition."
+  },
+  {
+    "Name": "Dagger",
+    "Image": "Sword.png",
+    "Description": "A dagger with no sheath."
+  }
+]
