@@ -1,0 +1,72 @@
+﻿@page
+@model Generator.Pages.Outposts.IndexModel
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Outposts";
+}
+
+<h1>Fill an Outpost</h1>
+
+<p>
+    Select an outpost to fill.
+    @if ((await AuthorizationService.AuthorizeAsync(User, null, Operations.Create)).Succeeded)
+    {
+        <br />
+        <a asp-page="Create">Create New</a>
+    }
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th /> <!-- Column for buttons -->
+            <th /> <!-- Column for icon -->
+            <th>
+                @Html.DisplayNameFor(model => model.Outpost[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Outpost[0].ReligionCapacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Outpost[0].ArtisanCapacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Outpost[0].SpecialtyShopCapacity)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Outpost) {
+        <tr>
+            <td>
+                <a asp-page="./Fill" asp-route-id="@item.OutpostId">Fill</a>
+                @if ((await AuthorizationService.AuthorizeAsync(User, item, Operations.Update)).Succeeded)
+                {
+                    <text> | </text>
+                        <a asp-page="./Details" asp-route-id="@item.OutpostId">Details</a>
+                    <text> | </text>
+                        <a asp-page="./Edit" asp-route-id="@item.OutpostId">Edit</a>
+                    <text> | </text>
+                        <a asp-page="./Delete" asp-route-id="@item.OutpostId">Delete</a>
+                }
+            </td>
+            <td>
+                <img src="Icons/@Html.DisplayFor(modelItem => item.Image)" alt="icon" height=40 width=40 />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReligionCapacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtisanCapacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpecialtyShopCapacity)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

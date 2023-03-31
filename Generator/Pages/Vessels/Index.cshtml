@@ -13,6 +13,7 @@
     Select a vessel to fill.
     @if ((await AuthorizationService.AuthorizeAsync(User, null, Operations.Create)).Succeeded)
     {
+        <br />
         <a asp-page="Create">Create New</a>
     }
 </p>
