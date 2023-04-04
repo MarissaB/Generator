@@ -1,0 +1,40 @@
+﻿@page
+@model Generator.Pages.Containers.FillModel
+@{
+    ViewData["Title"] = "Lootbox";
+}
+
+<h1>Filled @Html.DisplayFor(model => model.Container.Name)</h1>
+<a asp-page="Index">Return to Containers</a>
+@if (Model.Treasures != null && Model.Treasures.Count() > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <td/> <!-- Column for icon -->
+                <th>
+                    @Html.DisplayNameFor(model => model.Treasures[0].Name)
+                </th>                                   
+                <th>                                    
+                    @Html.DisplayNameFor(model => model.Treasures[0].Description)
+                </th>                                   
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var treasure in Model.Treasures)
+            {
+                <tr>
+                    <td>
+                        <img src="~/Icons/@(Html.DisplayFor(modelItem => treasure.Image)).png" alt="icon" height=40 width=40 />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => treasure.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => treasure.Description)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

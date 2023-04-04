@@ -1,18 +1,20 @@
 ﻿using Generator.Authorization;
 using Generator.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
 
 namespace Generator.Data
 {
     // TODO: Add more data for each category. Icons from game-icons.net
-    // TODO: Figure out a way to flatten and read the seed data, because typing out individual Add lines kinda sucks. JSON file?
+    // Cheat sheet for EF migration CLI commands: https://www.learnentityframeworkcore5.com/migrations-in-ef-core
     public static class SeedData
     {
         private static readonly string SeedPathPrefix = @"Data" + Path.DirectorySeparatorChar + "Seeds" + Path.DirectorySeparatorChar;
+
+        /// <summary>
+        /// Tables that can be seeded
+        /// </summary>
         private enum SeedTypes
         {
             Vessel,
@@ -21,7 +23,8 @@ namespace Generator.Data
             Outpost,
             ReligiousSite,
             Artisan,
-            SpecialtyShop
+            SpecialtyShop,
+            Container
         }
 
         
@@ -102,20 +105,16 @@ namespace Generator.Data
         }
 
         /// <summary>
-        /// Populates each table based on JSON file in Seeds folder.
+        /// Populates each table based on JSON file in Seeds folder. Must be defined in SeedTypes.
         /// </summary>
         /// <param name="context"></param>
         public static void SeedDB(ApplicationDbContext context)
         {
             // To generate JSON seed file from a POPULATED table in SQL, run /Data/Seeds/GenerateSeedJSON.sql query.
-            // The query doesn't work if it's empty lol.
-            SeedJSON(context, SeedTypes.Vessel);
-            SeedJSON(context, SeedTypes.Creature);
-            SeedJSON(context, SeedTypes.Treasure);
-            SeedJSON(context, SeedTypes.Outpost);
-            SeedJSON(context, SeedTypes.ReligiousSite);
-            SeedJSON(context, SeedTypes.Artisan);
-            SeedJSON(context, SeedTypes.SpecialtyShop);
+            foreach (SeedTypes seedType in Enum.GetValues(typeof(SeedTypes)))
+            {
+                SeedJSON(context, seedType);
+            }
         }
 
         private static void SeedJSON(ApplicationDbContext context, SeedTypes type)
@@ -188,6 +187,17 @@ namespace Generator.Data
                 {
                     List<SpecialtyShop> specialtyShops = JsonConvert.DeserializeObject<List<SpecialtyShop>>(specialtyShopsJSON);
                     context.SpecialtyShop.AddRange(specialtyShops);
+                    context.SaveChanges();
+                }
+            }
+
+            if (type == SeedTypes.Container && !context.Container.Any())
+            {
+                string containerJSON = File.ReadAllText(SeedPathPrefix + type + ".json");
+                if (containerJSON != null)
+                {
+                    List<Container> containers = JsonConvert.DeserializeObject<List<Container>>(containerJSON);
+                    context.Container.AddRange(containers);
                     context.SaveChanges();
                 }
             }

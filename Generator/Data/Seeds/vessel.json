@@ -1,38 +1,26 @@
 [
   {
     "Name": "Rowboat",
-    "Image": "Boat.png",
+    "Image": "Boat",
     "CreatureCapacity": 2,
     "TreasureCapacity": 5
   },
   {
     "Name": "Keelboat",
-    "Image": "Boat.png",
+    "Image": "Boat",
     "CreatureCapacity": 4,
     "TreasureCapacity": 10
   },
   {
     "Name": "Galleon",
-    "Image": "Boat.png",
+    "Image": "Boat",
     "CreatureCapacity": 20,
     "TreasureCapacity": 15
   },
   {
     "Name": "Warship",
-    "Image": "Boat.png",
+    "Image": "Boat",
     "CreatureCapacity": 20,
     "TreasureCapacity": 15
-  },
-  {
-    "Name": "Crate",
-    "Image": "Box.png",
-    "CreatureCapacity": 0,
-    "TreasureCapacity": 4
-  },
-  {
-    "Name": "Barrel",
-    "Image": "Box.png",
-    "CreatureCapacity": 1,
-    "TreasureCapacity": 2
   }
 ]

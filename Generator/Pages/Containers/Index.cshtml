@@ -1,0 +1,59 @@
+﻿@page
+@model Generator.Pages.Containers.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th /> <!-- Column for buttons -->
+            <th /> <!-- Column for icon -->
+            <th>
+                @Html.DisplayNameFor(model => model.Container[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Container[0].TreasureCapacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Container[0].TreasureMaxSize)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Container) {
+        <tr>
+            <td>
+                <a asp-page="./Fill" asp-route-id="@item.ContainerId">Fill</a>
+                @if ((await AuthorizationService.AuthorizeAsync(User, item, Operations.Update)).Succeeded)
+                {
+                    <text> | </text>
+                    <a asp-page="./Details" asp-route-id="@item.ContainerId">Details</a>
+                    <text> | </text>
+                    <a asp-page="./Edit" asp-route-id="@item.ContainerId">Edit</a>
+                    <text> | </text>
+                    <a asp-page="./Delete" asp-route-id="@item.ContainerId">Delete</a>
+                }
+            </td>
+            <td>
+                <img src="~/Icons/@(Html.DisplayFor(modelItem => item.Image)).png" alt="icon" height=40 width=40 />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TreasureCapacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TreasureMaxSize)
+            </td>           
+        </tr>
+}
+    </tbody>
+</table>

@@ -66,8 +66,6 @@ namespace Generator.Pages.Vessels
                 }
                 Treasures = Treasures.OrderBy(t => t.Name).ToList();
             }
-
-
         }
     }
 }

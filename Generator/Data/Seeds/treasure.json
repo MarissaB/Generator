@@ -1,22 +1,138 @@
 ﻿[
   {
     "Name": "Gold coins",
-    "Image": "Treasure.png",
-    "Description": "Pile of gold coins. Roll 5d12."
+    "Image": "Treasure",
+    "Description": "Pile of gold coins. Roll 1d12.",
+    "Rarity": 1,
+    "Category": 10,
+    "Size": 1
   },
   {
     "Name": "Gems",
-    "Image": "Gem.png",
-    "Description": "Small bag of assorted gems. Roll 5d12 x 100 for gold value."
+    "Image": "Gem",
+    "Description": "Small bag of assorted gems. Roll 5d12 x 100 for gold value.",
+    "Rarity": 3,
+    "Category": 16,
+    "Size": 1
   },
   {
     "Name": "Silverware",
-    "Image": "Treasure.png",
-    "Description": "Forks, knives, and spoons in good condition."
+    "Image": "Treasure",
+    "Description": "Forks, knives, and spoons in good condition.",
+    "Rarity": 1,
+    "Category": 10,
+    "Size": 1
   },
   {
     "Name": "Dagger",
-    "Image": "Sword.png",
-    "Description": "A dagger with no sheath."
+    "Image": "Sword",
+    "Description": "A dagger with no sheath.",
+    "Rarity": 1,
+    "Category": 9,
+    "Size": 1
+  },
+  {
+    "Name": "Empty journal",
+    "Image": "Box",
+    "Description": "An empty journal with pages torn out.",
+    "Rarity": 1,
+    "Category": 2,
+    "Size": 1
+  },
+  {
+    "Name": "Potion of Healing",
+    "Image": "Box",
+    "Description": "A potion of healing",
+    "Rarity": 2,
+    "Category": 3,
+    "Size": 1
+  },
+  {
+    "Name": "Scraps of cloth",
+    "Image": "Box",
+    "Description": "Torn bits and pieces of cloth",
+    "Rarity": 1,
+    "Category": 10,
+    "Size": 1
+  },
+  {
+    "Name": "Hammer",
+    "Image": "Box",
+    "Description": "A claw hammer",
+    "Rarity": 1,
+    "Category": 11,
+    "Size": 1
+  },
+  {
+    "Name": "Rope",
+    "Image": "Box",
+    "Description": "50 feet of rope in a coil",
+    "Rarity": 1,
+    "Category": 12,
+    "Size": 2
+  },
+  {
+    "Name": "Shortsword",
+    "Image": "Sword",
+    "Description": "A nondescript shortsword in decent condition.",
+    "Rarity": 1,
+    "Category": 9,
+    "Size": 3
+  },
+  {
+    "Name": "Longsword",
+    "Image": "Sword",
+    "Description": "A nondescript longsword in okay condition",
+    "Rarity": 1,
+    "Category": 9,
+    "Size": 3
+  },
+  {
+    "Name": "Tobacco tin",
+    "Image": "Box",
+    "Description": "A tin of tobacco with some left inside.",
+    "Rarity": 1,
+    "Category": 10,
+    "Size": 1
+  },
+  {
+    "Name": "Piece of wood",
+    "Image": "Box",
+    "Description": "Scrap section of 2x4",
+    "Rarity": 1,
+    "Category": 12,
+    "Size": 3
+  },
+  {
+    "Name": "Local map",
+    "Image": "Box",
+    "Description": "Map of the immediate area",
+    "Rarity": 2,
+    "Category": 2,
+    "Size": 1
+  },
+  {
+    "Name": "Box of nails",
+    "Image": "Box",
+    "Description": "The nails aren't even rusty but they're heavy",
+    "Rarity": 1,
+    "Category": 12,
+    "Size": 1
+  },
+  {
+    "Name": "Driftglobe",
+    "Image": "Box",
+    "Description": "A softball-sized orb that glows and drifts along.",
+    "Rarity": 2,
+    "Category": 10,
+    "Size": 1
+  },
+  {
+    "Name": "Ring of Warming",
+    "Image": "Box",
+    "Description": "Keeps the wearer warm and cozy in cold weather.",
+    "Rarity": 4,
+    "Category": 4,
+    "Size": 1
   }
 ]

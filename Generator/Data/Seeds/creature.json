@@ -1,1 +1,1 @@
-﻿[{"Name":"Bandit","Image":"Humanoid.png","Description":"Generic guy, low skills."},{"Name":"Big Bandit","Image":"Humanoid.png","Description":"Tough guy, low skills."},{"Name":"Lizard","Image":"Beast.png","Description":"Small and cute."},{"Name":"Cat","Image":"Beast.png","Description":"Fluffy."}]
+﻿[{"Name":"Bandit","Image":"Humanoid","Description":"Generic guy, low skills."},{"Name":"Big Bandit","Image":"Humanoid","Description":"Tough guy, low skills."},{"Name":"Lizard","Image":"Beast","Description":"Small and cute."},{"Name":"Cat","Image":"Beast","Description":"Fluffy."}]

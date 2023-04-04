@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Generator.Models
 {
@@ -8,6 +9,7 @@ namespace Generator.Models
         public string? Name { get; set; }
         public string? Description { get; set; }
         [Display(Name = "")]
+        [DefaultValue("Default")]
         public string? Image { get; set; }
     }
 }

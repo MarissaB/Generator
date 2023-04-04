@@ -4,6 +4,7 @@ using Generator.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Generator.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230404164654_TreasureTyping")]
+    partial class TreasureTyping
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,31 +45,6 @@ namespace Generator.Data.Migrations
                     b.HasKey("ArtisanId");
 
                     b.ToTable("Artisan");
-                });
-
-            modelBuilder.Entity("Generator.Models.Container", b =>
-                {
-                    b.Property<int>("ContainerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContainerId"));
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TreasureCapacity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TreasureMaxSize")
-                        .HasColumnType("int");
-
-                    b.HasKey("ContainerId");
-
-                    b.ToTable("Container");
                 });
 
             modelBuilder.Entity("Generator.Models.Creature", b =>

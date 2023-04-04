@@ -21,10 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Icons\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\Icons\Boat.png" />
   </ItemGroup>
 

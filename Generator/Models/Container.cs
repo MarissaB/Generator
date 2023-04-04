@@ -3,15 +3,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Generator.Models
 {
-    public class Vessel
+    public class Container
     {
-        public int VesselId { get; set; }
+        public int ContainerId { get; set; }
         public string? Name { get; set; }
-        [Display(Name = "Creatures")]
-        public int CreatureCapacity { get; set; }
         [Display(Name = "Treasures")]
+        [DefaultValue(1)]
         public int TreasureCapacity { get; set; }
-        [Display(Name = "")]
+        [DefaultValue(1)]
+        public Size TreasureMaxSize { get; set; }
+        [Display(Name = "Icon")]
         [DefaultValue("Default")]
         public string? Image { get; set; }
     }

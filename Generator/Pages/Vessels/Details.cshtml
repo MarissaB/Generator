@@ -33,7 +33,7 @@
             @Html.DisplayNameFor(model => model.Vessel.Image)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Vessel.Image)
+            <img src="~/Icons/@(Html.DisplayFor(model => model.Vessel.Image)).png" alt="icon" height=40 width=40 />
         </dd>
     </dl>
 </div>
