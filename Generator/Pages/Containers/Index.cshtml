@@ -6,56 +6,34 @@
 }
 
 <h1>Containers</h1>
-
+<p>Select a container to loot.</p>
 @if ((await AuthorizationService.AuthorizeAsync(User, null, Operations.Create)).Succeeded)
 {
-    <br />
-    <a asp-page="Create">Create New</a>
+    <p>Admin: <a asp-page="Create">Create New</a></p>
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th /> <!-- Column for buttons -->
-            <th /> <!-- Column for icon -->
-            <th>
-                @Html.DisplayNameFor(model => model.Container[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Container[0].TreasureCapacity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Container[0].TreasureMaxSize)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="row row-cols-1 row-cols-md-3 g-4">
 @foreach (var item in Model.Container) {
-        <tr>
-            <td>
-                <a asp-page="./Fill" asp-route-id="@item.ContainerId">Fill</a>
-                @if ((await AuthorizationService.AuthorizeAsync(User, item, Operations.Update)).Succeeded)
-                {
-                    <text> | </text>
-                    <a asp-page="./Details" asp-route-id="@item.ContainerId">Details</a>
-                    <text> | </text>
-                    <a asp-page="./Edit" asp-route-id="@item.ContainerId">Edit</a>
-                    <text> | </text>
-                    <a asp-page="./Delete" asp-route-id="@item.ContainerId">Delete</a>
-                }
-            </td>
-            <td>
-                <img src="~/Icons/@(Html.DisplayFor(modelItem => item.Image)).png" alt="icon" height=40 width=40 />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TreasureCapacity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TreasureMaxSize)
-            </td>           
-        </tr>
+    <div class="col">
+        <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <a asp-page="./Fill" asp-route-id="@item.ContainerId">
+                <div class="card-header">Tap to open</div>
+            </a>
+            <div class="card-body">
+                <img class="rounded float-start" style="margin-right: 20px" src="~/Icons/@(Html.DisplayFor(modelItem => item.Image)).png" alt="icon" height=50 width=50 />
+                <h4 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h4>
+                <p class="card-text">Contains @(Html.DisplayFor(modelItem => item.TreasureCapacity)) treasure(s).</p>
+                    @if ((await AuthorizationService.AuthorizeAsync(User, item, Operations.Update)).Succeeded)
+                    {
+                        <text> Admin: </text>
+                        <a asp-page="./Details" asp-route-id="@item.ContainerId">Details</a>
+                        <text> | </text>
+                        <a asp-page="./Edit" asp-route-id="@item.ContainerId">Edit</a>
+                        <text> | </text>
+                        <a asp-page="./Delete" asp-route-id="@item.ContainerId">Delete</a>
+                    }
+            </div>
+        </div>
+    </div>
 }
-    </tbody>
-</table>
+</div>
+
