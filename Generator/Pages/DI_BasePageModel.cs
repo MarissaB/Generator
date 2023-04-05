@@ -7,7 +7,6 @@ namespace Generator.Pages
 {
     public class DI_BasePageModel : PageModel
     {
-        // TODO: Move this to Pages root instead of under Vessels?
         protected ApplicationDbContext Context { get; }
         protected IAuthorizationService AuthorizationService { get; }
         protected UserManager<IdentityUser> UserManager { get; }

@@ -5,5 +5,39 @@
 }
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Current environment: @Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")</p>
+</div>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+        <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <a class="nav-link text-dark" asp-area="" asp-page="/Containers/Index">
+                <div class="card-header">Loot a...</div>
+                <div class="card-body">
+                    <h4 class="card-title">Container</h4>
+                    <p class="card-text">Open a crate, barrel, or satchel to find some loot.</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <a class="nav-link text-dark" asp-area="" asp-page="/Outposts/Index">
+                <div class="card-header">Generate an...</div>
+                <div class="card-body">
+                    <h4 class="card-title">Outpost</h4>
+                    <p class="card-text">Create an outpost with religious sites, artisans, and specialty shops.</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <a class="nav-link text-dark" asp-area="" asp-page="/Vessels/Index">
+                <div class="card-header">Generate a...</div>
+                <div class="card-body">
+                    <h4 class="card-title">Vessel</h4>
+                    <p class="card-text">Fill a ship with creatures and treasure.</p>
+                </div>
+            </a>
+        </div>
+    </div>
 </div>
