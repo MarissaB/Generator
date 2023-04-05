@@ -8,65 +8,38 @@
 }
 
 <h1>Fill an Outpost</h1>
-
-<p>
-    Select an outpost to fill.
-    @if ((await AuthorizationService.AuthorizeAsync(User, null, Operations.Create)).Succeeded)
-    {
-        <br />
-        <a asp-page="Create">Create New</a>
-    }
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th /> <!-- Column for buttons -->
-            <th /> <!-- Column for icon -->
-            <th>
-                @Html.DisplayNameFor(model => model.Outpost[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Outpost[0].ReligionCapacity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Outpost[0].ArtisanCapacity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Outpost[0].SpecialtyShopCapacity)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Outpost) {
-        <tr>
-            <td>
-                <a asp-page="./Fill" asp-route-id="@item.OutpostId">Fill</a>
-                @if ((await AuthorizationService.AuthorizeAsync(User, item, Operations.Update)).Succeeded)
-                {
-                    <text> | </text>
-                        <a asp-page="./Details" asp-route-id="@item.OutpostId">Details</a>
-                    <text> | </text>
-                        <a asp-page="./Edit" asp-route-id="@item.OutpostId">Edit</a>
-                    <text> | </text>
-                        <a asp-page="./Delete" asp-route-id="@item.OutpostId">Delete</a>
-                }
-            </td>
-            <td>
-                    <img src="~/Icons/@(Html.DisplayFor(modelItem => item.Image)).png" alt="icon" height=40 width=40 />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReligionCapacity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArtisanCapacity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SpecialtyShopCapacity)
-            </td>
-        </tr>
+<p>Select a outpost to fill.</p>
+@if ((await AuthorizationService.AuthorizeAsync(User, null, Operations.Create)).Succeeded)
+{
+    <p>Admin: <a asp-page="Create">Create New Outpost</a></p>
 }
-    </tbody>
-</table>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var item in Model.Outpost)
+    {
+        <div class="col">
+            <div class="card border-primary mb-3" style="max-width: 20rem;">
+                <a asp-page="./Fill" asp-route-id="@item.OutpostId">
+                    <div class="card-header">Tap to fill</div>
+                </a>
+                <div class="card-body">
+                    <img class="rounded float-start" style="margin-right: 20px" src="~/Icons/@(Html.DisplayFor(modelItem => item.Image)).png" alt="icon" height=50 width=50 />
+                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h4>
+                    <p class="card-text">
+                        Contains @(Html.DisplayFor(modelItem => item.ReligionCapacity)) religious site(s),
+                        @(Html.DisplayFor(modelItem => item.ArtisanCapacity)) artisan(s), and
+                        @(Html.DisplayFor(modelItem => item.SpecialtyShopCapacity)) specialty shop(s).
+                    </p>
+                    @if ((await AuthorizationService.AuthorizeAsync(User, item, Operations.Update)).Succeeded)
+                    {
+                        <text> Admin: </text>
+                        <a asp-page="./Details" asp-route-id="@item.OutpostId">Details</a>
+                        <text> | </text>
+                        <a asp-page="./Edit" asp-route-id="@item.OutpostId">Edit</a>
+                        <text> | </text>
+                        <a asp-page="./Delete" asp-route-id="@item.OutpostId">Delete</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

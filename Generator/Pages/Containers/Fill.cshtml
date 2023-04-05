@@ -2,12 +2,13 @@
 @model Generator.Pages.Containers.FillModel
 @{
     ViewData["Title"] = "Opened Container";
-}
 
+}
 <h1>Opened @Html.DisplayFor(model => model.Container.Name)</h1>
 <a class="btn btn-outline-primary" asp-page="Index">Return to Containers</a>
 <br/>
 <p>@Html.Raw(Model.LootMessage)</p>
+
 @if (Model.Treasures != null && Model.Treasures.Count() > 0)
 {
     <div class="row row-cols-1 row-cols-md-3 g-4">

@@ -41,7 +41,7 @@
   },
   {
     "Name": "Potion of Healing",
-    "Image": "Box",
+    "Image": "Potion",
     "Description": "A potion of healing",
     "Rarity": 2,
     "Category": 3,
@@ -133,6 +133,38 @@
     "Description": "Keeps the wearer warm and cozy in cold weather.",
     "Rarity": 4,
     "Category": 4,
+    "Size": 1
+  },
+  {
+    "Name": "LegendaryPlaceholder",
+    "Image": "Treasure",
+    "Description": "It does nothing. Congrats! 1% chance to spawn.",
+    "Rarity": 5,
+    "Category": 10,
+    "Size": 1
+  },
+  {
+    "Name": "EpicPlaceholder",
+    "Image": "Treasure",
+    "Description": "It does nothing. Congrats! 5% chance to spawn.",
+    "Rarity": 4,
+    "Category": 10,
+    "Size": 1
+  },
+  {
+    "Name": "2 poison vials",
+    "Image": "Potion",
+    "Description": "The vials are empty but have residue of something awful.",
+    "Rarity": 1,
+    "Category": 10,
+    "Size": 1
+  },
+  {
+    "Name": "Pocket lint",
+    "Image": "Box",
+    "Description": "Linty",
+    "Rarity": 1,
+    "Category": 10,
     "Size": 1
   }
 ]
