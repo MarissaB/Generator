@@ -1,1 +1,38 @@
-﻿[{"Name":"Crate","Image":"Box","TreasureCapacity":4,"TreasureMaxSize":3},{"Name":"Backpack","Image":"Box","TreasureCapacity":3,"TreasureMaxSize":2}]
+﻿[
+  {
+    "Name": "Crate",
+    "Image": "Box",
+    "TreasureCapacity": 6,
+    "TreasureMaxSize": 3
+  },
+  {
+    "Name": "Satchel",
+    "Image": "Box",
+    "TreasureCapacity": 3,
+    "TreasureMaxSize": 2
+  },
+  {
+    "Name": "Pocket",
+    "Image": "Box",
+    "TreasureCapacity": 1,
+    "TreasureMaxSize": 1
+  },
+  {
+    "Name": "Barrel",
+    "Image": "Box",
+    "TreasureCapacity": 5,
+    "TreasureMaxSize": 3
+  },
+  {
+    "Name": "Drawer",
+    "Image": "Box",
+    "TreasureCapacity": 2,
+    "TreasureMaxSize": 1
+  },
+  {
+    "Name": "Bookshelf",
+    "Image": "Box",
+    "TreasureCapacity": 6,
+    "TreasureMaxSize": 2
+  }
+]

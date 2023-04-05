@@ -2,14 +2,16 @@
 @model Generator.Pages.Containers.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Containers";
 }
 
-<h1>Index</h1>
+<h1>Containers</h1>
 
-<p>
+@if ((await AuthorizationService.AuthorizeAsync(User, null, Operations.Create)).Succeeded)
+{
+    <br />
     <a asp-page="Create">Create New</a>
-</p>
+}
 <table class="table">
     <thead>
         <tr>

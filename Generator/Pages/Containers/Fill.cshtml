@@ -6,6 +6,8 @@
 
 <h1>Filled @Html.DisplayFor(model => model.Container.Name)</h1>
 <a asp-page="Index">Return to Containers</a>
+<br/>
+<p>@Html.Raw(Model.LootMessage)</p>
 @if (Model.Treasures != null && Model.Treasures.Count() > 0)
 {
     <table class="table">
