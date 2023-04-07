@@ -42,11 +42,12 @@ builder.Services.AddSingleton<IAuthorizationHandler, AdministratorAuthHandler>()
         };
     })*/
 builder.Services.AddAuthentication()
-    .AddDiscord(discordOptions =>
+    .AddDiscord("Discord",discordOptions =>
     {
         discordOptions.ClientId = configuration.GetValue<string>("DiscordClientId");
         discordOptions.ClientSecret = configuration.GetValue<string>("DiscordClientSecret");
         discordOptions.Scope.Add("identify");
+        discordOptions.Scope.Add("email");
         discordOptions.SaveTokens = true;
         discordOptions.Prompt = "none";
         discordOptions.SignInScheme = IdentityConstants.ExternalScheme; // This works for external logins instead of CookieAuthenticationDefaults.AuthenticationScheme
