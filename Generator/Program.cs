@@ -1,4 +1,3 @@
-using Generator.Areas.Identity.Data;
 using Generator.Authorization;
 using Generator.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -13,7 +12,7 @@ var connectionString = configuration.GetConnectionString("DefaultConnection") ??
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 

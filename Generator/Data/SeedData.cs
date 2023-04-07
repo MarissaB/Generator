@@ -1,5 +1,4 @@
-﻿using Generator.Areas.Identity.Data;
-using Generator.Authorization;
+﻿using Generator.Authorization;
 using Generator.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -57,11 +56,11 @@ namespace Generator.Data
         /// <exception cref="Exception"></exception>
         private static async Task<string> EnsureUser(IServiceProvider serviceProvider, string testUserPass, string userName)
         {
-            var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
+            var userManager = serviceProvider.GetService<UserManager<IdentityUser>>();
             var user = await userManager.FindByNameAsync(userName);
             if (user == null)
             {
-                user = new ApplicationUser { UserName = userName, EmailConfirmed = true };
+                user = new IdentityUser { UserName = userName, EmailConfirmed = true };
                 await userManager.CreateAsync(user, testUserPass);
             }
 
@@ -94,7 +93,7 @@ namespace Generator.Data
                 await roleManager.CreateAsync(new IdentityRole(role));
             }
 
-            var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
+            var userManager = serviceProvider.GetService<UserManager<IdentityUser>>();
             var user = await userManager.FindByIdAsync(userId);
 
             if (user == null)

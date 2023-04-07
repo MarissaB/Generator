@@ -1,10 +1,11 @@
-﻿using Generator.Areas.Identity.Data;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Generator.Areas.Identity.Data;
 
 namespace Generator.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -18,5 +19,6 @@ namespace Generator.Data
         public DbSet<Generator.Models.Artisan> Artisan { get; set; } = default!;
         public DbSet<Generator.Models.SpecialtyShop> SpecialtyShop { get; set; } = default!;
         public DbSet<Generator.Models.Container> Container { get; set; } = default!;
+        public DbSet<Generator.Areas.Identity.Data.UserConfig> UserConfig { get; set; } = default!;
     }
 }

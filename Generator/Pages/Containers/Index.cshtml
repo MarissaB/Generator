@@ -1,5 +1,7 @@
 ﻿@page
 @model Generator.Pages.Containers.IndexModel
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "Containers";
