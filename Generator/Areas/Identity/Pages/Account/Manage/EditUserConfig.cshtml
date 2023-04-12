@@ -12,18 +12,18 @@
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <input type="hidden" asp-for="UserConfig.UserConfigId" />
             <input type="hidden" asp-for="UserConfig.UserId"/>
-            <div class="form-floating mb-3">
-                <label asp-for="UserConfig.DisplayName" class="form-label"></label>
+            <div class="form-group mb-3">
+                <label asp-for="UserConfig.DisplayName" class="control-label"></label>
                 <input asp-for="UserConfig.DisplayName" class="form-control" />
                 <span asp-validation-for="UserConfig.DisplayName" class="text-danger"></span>
             </div>
-            <div class="form-floating mb-3">
-                <label asp-for="UserConfig.Theme" class="form-label"></label>
+            <div class="form-group mb-3">
+                <label asp-for="UserConfig.Theme" class="control-label"></label>
                 <input asp-for="UserConfig.Theme" class="form-control" />
                 <span asp-validation-for="UserConfig.Theme" class="text-danger"></span>
             </div>
-            <div class="form-floating mb-3">
-                <label asp-for="UserConfig.Image" class="form-label"></label>
+            <div class="form-group mb-3">
+                <label asp-for="UserConfig.Image" class="control-label"></label>
                 <input asp-for="UserConfig.Image" class="form-control" />
                 <span asp-validation-for="UserConfig.Image" class="text-danger"></span>
             </div>
