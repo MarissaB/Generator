@@ -1,0 +1,41 @@
+﻿@page
+@model Generator.Areas.Identity.Data.EditModel
+@{
+    ViewData["Title"] = "User Config";
+    ViewData["ActivePage"] = ManageNavPages.UserConfigs;
+}
+<h3>@ViewData["Title"]</h3>
+<partial name="_StatusMessage" for="StatusMessage" />
+<div class="row">
+    <div class="col-md-6">
+        <form id="profile-form" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <input type="hidden" asp-for="UserConfig.UserConfigId" />
+            <input type="hidden" asp-for="UserConfig.UserId"/>
+            <div class="form-floating mb-3">
+                <label asp-for="UserConfig.DisplayName" class="form-label"></label>
+                <input asp-for="UserConfig.DisplayName" class="form-control" />
+                <span asp-validation-for="UserConfig.DisplayName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <label asp-for="UserConfig.Theme" class="form-label"></label>
+                <input asp-for="UserConfig.Theme" class="form-control" />
+                <span asp-validation-for="UserConfig.Theme" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <label asp-for="UserConfig.Image" class="form-label"></label>
+                <input asp-for="UserConfig.Image" class="form-control" />
+                <span asp-validation-for="UserConfig.Image" class="text-danger"></span>
+            </div>
+            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+
+           <!-- <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>-->
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+}

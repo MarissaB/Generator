@@ -60,7 +60,7 @@ namespace Generator.Data
             var user = await userManager.FindByNameAsync(userName);
             if (user == null)
             {
-                user = new IdentityUser { UserName = userName, EmailConfirmed = true };
+                user = new IdentityUser { UserName = userName, Email = userName, EmailConfirmed = true };
                 await userManager.CreateAsync(user, testUserPass);
             }
 
