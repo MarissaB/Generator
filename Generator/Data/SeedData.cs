@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 namespace Generator.Data
 {
     // TODO: Add more data for each category. Icons from game-icons.net
+    // TODO: Add seed data for Participants and Encounters
     // Cheat sheet for EF migration CLI commands: https://www.learnentityframeworkcore5.com/migrations-in-ef-core
     public static class SeedData
     {

@@ -33,6 +33,10 @@ namespace Generator.Pages.Vessels
             }
 
             var isAuthorized = await AuthorizationService.AuthorizeAsync(User, Vessel, Operations.Create);
+            if (!isAuthorized.Succeeded)
+            {
+                return Forbid();
+            }
             Context.Vessel.Add(Vessel);
             await Context.SaveChangesAsync();
 

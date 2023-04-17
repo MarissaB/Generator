@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Generator.Data;
 using Microsoft.AspNetCore.Identity;
 
 namespace Generator.Areas.Identity.Data
@@ -16,14 +10,11 @@ namespace Generator.Areas.Identity.Data
     {
         private readonly Generator.Data.ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public EditModel(Generator.Data.ApplicationDbContext context, UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+        public EditModel(Generator.Data.ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
             _userManager = userManager;
-            _signInManager = signInManager;
         }
 
         [BindProperty]

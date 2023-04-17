@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Generator.Models;
 
-namespace Generator.Areas.Identity.Data
+namespace Generator.Pages.Encounters
 {
     public class DeleteModel : PageModel
     {
@@ -14,40 +15,40 @@ namespace Generator.Areas.Identity.Data
         }
 
         [BindProperty]
-      public UserConfig UserConfig { get; set; } = default!;
+      public Encounter Encounter { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.UserConfig == null)
+            if (id == null || _context.Encounter == null)
             {
                 return NotFound();
             }
 
-            var userconfig = await _context.UserConfig.FirstOrDefaultAsync(m => m.UserConfigId == id);
+            var encounter = await _context.Encounter.FirstOrDefaultAsync(m => m.EncounterId == id);
 
-            if (userconfig == null)
+            if (encounter == null)
             {
                 return NotFound();
             }
             else 
             {
-                UserConfig = userconfig;
+                Encounter = encounter;
             }
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.UserConfig == null)
+            if (id == null || _context.Encounter == null)
             {
                 return NotFound();
             }
-            var userconfig = await _context.UserConfig.FindAsync(id);
+            var encounter = await _context.Encounter.FindAsync(id);
 
-            if (userconfig != null)
+            if (encounter != null)
             {
-                UserConfig = userconfig;
-                _context.UserConfig.Remove(UserConfig);
+                Encounter = encounter;
+                _context.Encounter.Remove(Encounter);
                 await _context.SaveChangesAsync();
             }
 

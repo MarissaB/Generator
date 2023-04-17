@@ -1,0 +1,67 @@
+﻿@page
+@model Generator.Pages.Encounters.Participants.DetailsModel
+
+<div>
+    <h4>Participant</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Participant.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Participant.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Participant.Image)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Participant.Image)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Participant.IsActive)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Participant.IsActive)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Participant.Initiative)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Participant.Initiative)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Participant.MaxHealth)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Participant.MaxHealth)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Participant.RemovedHealth)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Participant.RemovedHealth)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Participant.Armor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Participant.Armor)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Participant.Note)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Participant.Note)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Participant.Encounter)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Participant.Encounter.EncounterId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Participant?.ParticipantId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
