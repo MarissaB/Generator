@@ -20,7 +20,7 @@ namespace Generator.Pages.Encounters.Participants
         public SelectList EncounterNameSelection { get; set; }
         public int EncounterId { get; set; }
 
-        public void PopulateEncounterDropdownList(object selectedEncounter = null)
+        public void PopulateEncounterDropdownList(object? selectedEncounter = null)
         {
             EncounterNameSelection = new SelectList(Encounters, nameof(Encounter.EncounterId), nameof(Encounter.Name), selectedEncounter);
         }

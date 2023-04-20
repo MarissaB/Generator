@@ -46,7 +46,7 @@ namespace Generator.Pages.Encounters
             _context.Encounter.Add(Encounter);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./CreateParticipant", new { id = Encounter.EncounterId });
+            return RedirectToPage("./Participants/Create", new { id = Encounter.EncounterId });
         }
     }
 }
