@@ -2,35 +2,50 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Generator.Models;
+using Generator.Data;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Generator.Authorization;
 
 namespace Generator.Pages.Encounters
 {
-    public class DetailsModel : PageModel
+    public class DetailsModel : DI_BasePageModel
     {
-        private readonly Generator.Data.ApplicationDbContext _context;
-
-        public DetailsModel(Generator.Data.ApplicationDbContext context)
+        public DetailsModel(ApplicationDbContext context, IAuthorizationService authorizationService, UserManager<IdentityUser> userManager)
+            : base(context, authorizationService, userManager)
         {
-            _context = context;
+
         }
 
-      public Encounter Encounter { get; set; } = default!; 
+        public Encounter Encounter { get; set; } = default!;
+        public IList<Participant>? Participants { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Encounter == null)
+            var user = await UserManager.GetUserAsync(User);
+            var encounter = new Encounter();
+            if (Context.Encounter != null && user != null && id != null)
             {
-                return NotFound();
+                var isAuthorized = await AuthorizationService.AuthorizeAsync(User, null, Operations.ReadAll);
+                if (isAuthorized.Succeeded)
+                {
+                    encounter = await Context.Encounter
+                        .Include(e => e.Participants).FirstOrDefaultAsync(e => e.EncounterId == id);
+                }
+                else
+                {
+                    encounter = await Context.Encounter
+                        .Include(e => e.Participants).FirstOrDefaultAsync(e => e.EncounterId == id && e.UserId == user.Id);
+                }
             }
-
-            var encounter = await _context.Encounter.Include(e => e.Participants).FirstOrDefaultAsync(m => m.EncounterId == id);
             if (encounter == null)
             {
                 return NotFound();
             }
-            else 
+            Encounter = encounter;
+            if (Encounter.Participants != null)
             {
-                Encounter = encounter;
+                Participants = Encounter.Participants.ToList();
             }
             return Page();
         }

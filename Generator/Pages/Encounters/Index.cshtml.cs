@@ -97,5 +97,12 @@ namespace Generator.Pages.Encounters
             return RedirectToPage("./Index");
         }
 
+        public IActionResult OnPostAddParticipant(int encounterId, Participant participant)
+        {
+
+
+            return RedirectToPage();
+        }
+
     }
 }

@@ -1,0 +1,85 @@
+﻿@page
+@model Generator.Pages.Encounters.EditModel
+
+@{
+    ViewData["Title"] = "Edit Encounter";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Encounter</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Encounter.EncounterId" />
+            <div class="form-group">
+                <label asp-for="Encounter.Name" class="control-label"></label>
+                <input asp-for="Encounter.Name" class="form-control" />
+                <span asp-validation-for="Encounter.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+@if (Model.Participants != null)
+{
+    <h3>Participants</h3>
+    <table class="table">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Participants[0].Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Participants[0].MaxHealth)</th>
+            <th>@Html.DisplayNameFor(model => model.Participants[0].Armor)</th>
+            <th>@Html.DisplayNameFor(model => model.Participants[0].Note)</th>
+            <th />
+        </tr>
+        @foreach (var item in Model.Participants)
+        {
+            var modalId = "modalDelete" + item.ParticipantId;
+            var targetModal = "#" + modalId;
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.MaxHealth)</td>
+                <td>@Html.DisplayFor(modelItem => item.Armor)</td>
+                <td>@Html.DisplayFor(modelItem => item.Note)</td>
+                <td>
+                    <a asp-page="./Participants/Edit" asp-route-id="@item.ParticipantId">Edit</a> |
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="@targetModal">
+                        Delete
+                    </button>
+
+                    <div class="modal fade" id="@modalId" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">Delete Confirmation</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Delete @(item.Name)?
+                                </div>
+                                <div class="modal-footer">
+                                    <form method="post">
+                                        <input name="participantId" value="@item.ParticipantId" type="hidden" />
+                                        <button asp-page-handler="DeleteParticipant" class="btn bg-danger mr-1">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+}
+<div>
+    <a asp-page="./Manage">Back to Encounters</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -70,7 +70,7 @@ namespace Generator.Pages.Encounters.Participants
             Context.Participant.Add(Participant);
             await Context.SaveChangesAsync();
 
-            return RedirectToPage("/Encounters/Index", new { id = Participant.EncounterId });
+            return RedirectToPage("/Encounters/Manage");
         }
     }
 }

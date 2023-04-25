@@ -1,0 +1,66 @@
+﻿@page
+@model Generator.Pages.Encounters.ManageModel
+
+@{
+    ViewData["Title"] = "Manage";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Manage Encounters</h1>
+
+<p>
+    <a asp-page="Create">Create New Encounter</a>
+</p>
+
+<div class="accordion" id="accordionEncounters">
+@foreach(var item in Model.Encounter)
+{
+    var count = 0;
+    var elementId = "collapse" + item.EncounterId;
+    var collapseId = "#" + elementId;
+    var headerId = "header" + item.EncounterId;
+    var modalId = "modalDelete" + item.EncounterId;
+    var targetModal = "#" + modalId;
+        @if (item.Participants != null)
+    {
+        count = item.Participants.Count();
+    }
+    <div class="accordion-item">
+        <h2 class="accordion-header" id=@(headerId)>
+            <button class="accordion-button collapsed justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target=@(collapseId) aria-expanded="false" aria-controls=@(elementId)>
+                <strong>@Html.DisplayFor(modelItem => item.Name)</strong>
+            </button>
+        </h2>
+            <div id=@(elementId) class="accordion-collapse collapse" aria-labelledby=@(headerId) data-bs-parent="#accordionEncounters" style="">
+            <div class="accordion-body">
+                    <span class="badge bg-primary">Participants: @count</span>
+                <hr/>
+                    <a asp-page="./Details" asp-route-id="@item.EncounterId">Details</a> | 
+                    <a asp-page="./Edit" asp-route-id="@item.EncounterId">Edit</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="@targetModal">Delete</button>
+
+                <div class="modal fade" id="@modalId" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">Delete Confirmation</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Delete @(item.Name)?
+                                </div>
+                                <div class="modal-footer">
+                                    <form method="post">
+                                        <input name="encounterId" value="@item.EncounterId" type="hidden" />
+                                        <button asp-page-handler="DeleteEncounter" class="btn bg-danger mr-1">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+}
+</div>

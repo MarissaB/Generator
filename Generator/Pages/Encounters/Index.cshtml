@@ -33,7 +33,7 @@
                     @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                <a asp-action="./Index" asp-route-id="@item.EncounterId">Select</a> |
+                <a asp-action="./Index" asp-route-id="@item.EncounterId">View</a> |
                 <a asp-page="./Edit" asp-route-id="@item.EncounterId">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.EncounterId">Run</a> |
                 <a asp-page="./Participants/Create" asp-route-id="@item.EncounterId">Add Participant</a> |
