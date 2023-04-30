@@ -1,29 +1,29 @@
 ﻿@page
-@model Generator.Pages.Encounters.EditModel
-
+@model Generator.Pages.Encounters.RunModel
 @{
     ViewData["Title"] = "Edit Encounter";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
+<h1>Run: @Html.DisplayFor(model => model.Encounter.Name)</h1>
+<h4>Round: @Html.DisplayFor(model => model.Encounter.Round)</h4>
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Encounter.EncounterId" />
+    <input type="hidden" asp-for="Encounter.UserId" />
+    <input type="hidden" asp-for="Encounter.Name" />
+    <input type="hidden" asp-for="Encounter.Round" />
+    <input type="hidden" asp-for="Encounter.TurnIndex" />
+    @if (Model.Encounter.Round != null && Model.Encounter.Round > 1)
+    {
+        <button asp-page-handler="PreviousRound" class="btn btn-outline-primary mr-1">Previous Round</button>
+    }
+    else
+    {
+        <button disabled class="btn btn-outline-primary mr-1">Previous Round</button>
+    }
+    <button asp-page-handler="NextRound" class="btn btn-outline-primary mr-1">Next Round</button>
+</form>
 
-<h1>Edit: @Html.DisplayFor(model => model.Encounter.Name)</h1>
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Encounter.EncounterId" />
-            <input type="hidden" asp-for="Encounter.UserId" />
-            <div class="form-group">
-                <label asp-for="Encounter.Name" class="control-label"></label>
-                <input asp-for="Encounter.Name" class="form-control" />
-                <span asp-validation-for="Encounter.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
 @if (Model.Participants != null)
 {
     <h3>Participants</h3>
@@ -80,5 +80,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

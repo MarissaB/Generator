@@ -1,22 +1,12 @@
 ﻿@page
 @model Generator.Pages.Encounters.DetailsModel
 
-<div>
-    <h4>Encounter</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Encounter.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Encounter.Name)
-        </dd>
-    </dl>
-</div>
+<h1>@Html.DisplayFor(model => model.Encounter.Name)</h1>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Encounter?.EncounterId">Edit</a> |
     <a asp-page="./Manage">Manage Encounters</a>
 </div>
+<hr/>
 @if (Model.Participants != null)
 {
     <h3>Participants</h3>

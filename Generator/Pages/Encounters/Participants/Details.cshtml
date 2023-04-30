@@ -63,5 +63,5 @@
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Participant?.ParticipantId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="/Encounters/Details" asp-route-id="@Model.Participant.EncounterId">Back to Encounter</a>
 </div>

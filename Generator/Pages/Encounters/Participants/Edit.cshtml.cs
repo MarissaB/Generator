@@ -66,7 +66,7 @@ namespace Generator.Pages.Encounters.Participants
                 }
             }
 
-            return RedirectToPage("/Encounters/Index", new { id = Participant.EncounterId });
+            return RedirectToPage("/Encounters/Edit", new { id = Participant.EncounterId });
         }
 
         private bool ParticipantExists(int id)

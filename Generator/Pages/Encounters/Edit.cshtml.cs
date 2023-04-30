@@ -63,6 +63,15 @@ namespace Generator.Pages.Encounters
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            var user = await UserManager.GetUserAsync(User);
+            if (user != null)
+            {
+                if (Encounter.UserId != user.Id)
+                {
+                    return Forbid();
+                }
+            }
+
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -86,7 +95,7 @@ namespace Generator.Pages.Encounters
                 }
             }
 
-            return RedirectToPage("./Manage");
+            return RedirectToPage("./Edit", new { id = Encounter.EncounterId });
         }
 
         public async Task<IActionResult> OnPostDeleteParticipant(int participantId)

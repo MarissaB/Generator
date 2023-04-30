@@ -35,8 +35,11 @@
             <div class="accordion-body">
                     <span class="badge bg-primary">Participants: @count</span>
                 <hr/>
-                    <a asp-page="./Details" asp-route-id="@item.EncounterId">Details</a> | 
-                    <a asp-page="./Edit" asp-route-id="@item.EncounterId">Edit</a>
+                    <a asp-page="./Details" asp-route-id="@item.EncounterId" class="btn btn-outline-primary">Details</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a asp-page="./Edit" asp-route-id="@item.EncounterId" class="btn btn-outline-primary">Edit</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a asp-page="./Run" asp-route-id="@item.EncounterId" class="btn btn-outline-primary">Run</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="@targetModal">Delete</button>
 
